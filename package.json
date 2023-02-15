@@ -1,0 +1,9 @@
+{
+  "name": "imonizer-package",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "modules/*",
+    "package"
+  ]
+}

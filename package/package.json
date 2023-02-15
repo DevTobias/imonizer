@@ -1,0 +1,42 @@
+{
+  "name": "imonizer",
+  "version": "1.2.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist/index.js",
+    "dist/cli.js"
+  ],
+  "types": "dist/index.d.ts",
+  "bin": {
+    "imonizer": "dist/cli.js"
+  },
+  "scripts": {
+    "build:start": "yarn build && yarn start",
+    "build": "yarn build:package && yarn build:cli",
+    "build:package": "esbuild src/index.ts --minify --bundle --packages=external --platform=node --outfile=dist/index.js --format=esm && tsc --emitDeclarationOnly",
+    "build:cli": "esbuild src/cli.ts --minify --bundle --packages=external --platform=node --outfile=dist/cli.js --format=esm && tsc --emitDeclarationOnly",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "commander": "^10.0.0",
+    "imagetools-core": "^3.3.1",
+    "sharp": "^0.31.3"
+  },
+  "devDependencies": {
+    "@modules/eslint-config": "^1.0.0",
+    "@modules/prettier-config": "^1.0.0",
+    "@types/node": "^18.11.18",
+    "@types/sharp": "^0.31.1",
+    "esbuild": "^0.17.5",
+    "typescript": "^4.9.4"
+  },
+  "prettier": "@modules/prettier-config",
+  "eslintConfig": {
+    "extends": [
+      "@modules/eslint-config"
+    ]
+  }
+}

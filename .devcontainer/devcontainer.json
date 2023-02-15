@@ -1,0 +1,67 @@
+{
+  "name": "imonizer",
+  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:18-bullseye",
+  "remoteUser": "node",
+  "mounts": [
+    "source=node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+  "postCreateCommand": "sudo chown node node_modules",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Editor settings
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": false,
+        "editor.formatOnType": false,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": true
+        },
+        "editor.formatOnSaveMode": "file",
+        "files.autoSave": "onFocusChange",
+
+        // Explorer
+        "explorer.fileNesting.enabled": true,
+        "explorer.fileNesting.expand": false,
+        "explorer.fileNesting.patterns": {
+          "package.json": ".gitignore,.editorconfig,tsconfig.json,.env,turbo.json,.dockerignore",
+          "server.ts": "global.d.ts"
+        },
+        "files.exclude": {
+          "**/yarn.lock": true,
+          "**/node_modules": true
+        },
+
+        // Typescript
+        "typescript.enablePromptUseWorkspaceTsdk": true,
+        "typescript.preferences.importModuleSpecifier": "non-relative",
+
+        // ESLint
+        "eslint.validate": ["javascript", "typescript"],
+        "eslint.probe": ["javascript", "typescript"],
+        "eslint.codeAction.showDocumentation": {
+          "enable": true
+        },
+        "eslint.workingDirectories": ["package"],
+
+        //! Formatters
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        "[json][json][html]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript][javascript]": {
+          "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+        }
+      },
+      "extensions": [
+        "streetsidesoftware.code-spell-checker-german",
+        "streetsidesoftware.code-spell-checker",
+        "ms-azuretools.vscode-docker",
+        "EditorConfig.EditorConfig",
+        "IronGeek.vscode-env",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "rvest.vs-code-prettier-eslint"
+      ]
+    }
+  }
+}
